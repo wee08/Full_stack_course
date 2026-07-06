@@ -1,3 +1,6 @@
+// import num from "./script.js";
+const num = require("./script.js");
+
 function sum(a = 10) {
   return a + 20;
 }
@@ -24,3 +27,5 @@ const colors = ["red", "green", "blue", "purple"];
 console.log(colors);
 const newColors = [...colors, "black"];
 console.log(newColors);
+
+console.log(num);
