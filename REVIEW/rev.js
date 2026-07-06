@@ -19,3 +19,8 @@ var { name, age, address } = Person;
 console.log(name);
 console.log(age);
 console.log(address);
+
+const colors = ["red", "green", "blue", "purple"];
+console.log(colors);
+const newColors = [...colors, "black"];
+console.log(newColors);
