@@ -28,4 +28,4 @@ console.log(colors);
 const newColors = [...colors, "black"];
 console.log(newColors);
 
-console.log(num);
+console.log(`num: ${num}`);

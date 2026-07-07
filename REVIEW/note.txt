@@ -1,0 +1,11 @@
+- var, let, const
+- condition
+    if, else, if else if, switch, ternary operator : condition ? true : false
+- loop
+    for, while, do while, for in
+- array
+    index, array object
+- array method 
+    map, forEach, each, length, push, pop, ...
+- arrow function 
+    const funcName = () => {...};
