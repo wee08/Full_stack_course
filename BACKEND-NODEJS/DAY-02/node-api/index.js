@@ -5,7 +5,7 @@ var person = {
   age: 20,
   address: "Phnom Penh",
 };
-// console.table(person);
+// console.table(person);   
 // console.time(person);
 
 // func.app();
