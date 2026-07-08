@@ -1,8 +1,7 @@
+const getProduct = require("../controller/product.controller");
 function productRoute(app) {
-  app.get("/", (req, res) => {
-    res.send("Hello world");
-  });
-
+  //define route
+  app.get("/", getProduct);
   app.get("/api/v1/user", (req, res) => {
     res.send("Employee");
   });
