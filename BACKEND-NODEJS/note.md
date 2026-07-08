@@ -4,3 +4,5 @@ Route is a URL path that user use to find the data api ex: "/api/v1/user/"
   npm init -y
 - install express
   npm install express
+- route used for define the path
+- controller used for handle logic
