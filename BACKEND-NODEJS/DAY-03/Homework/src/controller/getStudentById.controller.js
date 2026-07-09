@@ -9,6 +9,7 @@ function findStudent() {
   });
   return student;
 }
+
 function getStudentById(req, res) {
   res.send({
     student: findStudent(),
