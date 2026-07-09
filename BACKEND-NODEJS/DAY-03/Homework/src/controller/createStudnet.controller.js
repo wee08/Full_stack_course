@@ -16,4 +16,5 @@ function createStudent(req, res) {
     student: listStudent,
   });
 }
+
 module.exports = createStudent;

@@ -1,18 +1,15 @@
 const listStudent = require("../data/students");
-function findStudent() {
+
+function getStudentById(req, res) {
   const student = [];
-  const inputId = 2;
+  const id = req.query.id;
   listStudent.map((std, idx) => {
-    if (std.id === inputId) {
+    if (std.id == id) {
       student.push(listStudent[idx]);
     }
   });
-  return student;
-}
-
-function getStudentById(req, res) {
   res.send({
-    student: findStudent(),
+    student: student,
   });
 }
 module.exports = getStudentById;
