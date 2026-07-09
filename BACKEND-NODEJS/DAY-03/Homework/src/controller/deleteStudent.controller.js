@@ -8,7 +8,8 @@ function deleteStudent(req, res) {
     }
   });
   res.send({
-    student: "delete",
+    status: "delete",
+    student: listStudent,
   });
 }
 module.exports = deleteStudent;

@@ -26,3 +26,9 @@ change : "nodemon index.js"
 "start": "nodemon index.js"
 },
 and run with : npm start
+
+http methods : is a method for any action (CRUD) on data api.
+get : read data
+post : insert new data
+put : makes change on data
+delete : delete data

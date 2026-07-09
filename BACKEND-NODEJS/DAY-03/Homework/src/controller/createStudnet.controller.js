@@ -12,7 +12,7 @@ function createStudent(req, res) {
 
   listStudent.push(newStudnet);
   res.send({
-    student: "added sucessfuly",
+    status: "added sucessfuly",
     student: listStudent,
   });
 }
