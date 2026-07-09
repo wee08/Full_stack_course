@@ -17,3 +17,7 @@ homework
 - delete student
 
 3. create data student
+
+nodemon
+installation : npm install nodemon
+change : "nodemon index.js"
