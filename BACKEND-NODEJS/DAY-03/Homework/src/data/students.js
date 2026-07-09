@@ -6,13 +6,7 @@ const listStudent = [
     class: "12 A",
     "date of birth": "12-Mar-2000",
   },
-  {
-    name: "Heng Dara",
-    id: 2,
-    gender: "M",
-    class: "12 A",
-    "date of birth": "12-May-2001",
-  },
+
   {
     name: "Meas Somorn",
     id: 3,
@@ -33,6 +27,13 @@ const listStudent = [
     gender: "M",
     class: "12 A",
     "date of birth": "12-Dec-2009",
+  },
+  {
+    name: "Heng Dara",
+    id: 2,
+    gender: "M",
+    class: "12 A",
+    "date of birth": "12-May-2001",
   },
 ];
 module.exports = listStudent;
