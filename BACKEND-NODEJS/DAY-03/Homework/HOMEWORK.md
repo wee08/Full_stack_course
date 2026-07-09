@@ -21,3 +21,8 @@ homework
 nodemon
 installation : npm install nodemon
 change : "nodemon index.js"
+"scripts": {
+"test": "echo \"Error: no test specified\" && exit 1",
+"start": "nodemon index.js"
+},
+and run with : npm start
