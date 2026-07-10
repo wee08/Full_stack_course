@@ -1,4 +1,5 @@
 const getAllProductRoute = require("./src/router/getAllProduct.route");
+const getProductByIdRoute = require("./src/router/getProductById.route");
 
 const express = require("express");
 const app = express();
@@ -9,6 +10,7 @@ app.get("/", (req, res) => {
 });
 
 getAllProductRoute(app);
+getProductByIdRoute(app);
 
 app.listen(PORT, () => {
   console.log(`local host: http://localhost:${PORT}`);
