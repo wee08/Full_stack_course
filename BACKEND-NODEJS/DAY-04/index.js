@@ -1,3 +1,4 @@
+const createProductRoute = require("./src/router/createProduct.route");
 const getAllProductRoute = require("./src/router/getAllProduct.route");
 const getProductByIdRoute = require("./src/router/getProductById.route");
 
@@ -11,6 +12,7 @@ app.get("/", (req, res) => {
 
 getAllProductRoute(app);
 getProductByIdRoute(app);
+createProductRoute(app);
 
 app.listen(PORT, () => {
   console.log(`local host: http://localhost:${PORT}`);
