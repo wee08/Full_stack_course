@@ -60,3 +60,5 @@ const productList = [
     color: "black",
   },
 ];
+
+module.exports = productList;
