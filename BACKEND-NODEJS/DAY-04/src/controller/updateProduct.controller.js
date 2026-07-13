@@ -18,7 +18,6 @@ const updateProduct = (req, res) => {
       color: colors[idx],
     };
     if (item.id == id) {
-      productList.splice(idx, 0);
       replace_idx = idx;
     }
     productList[replace_idx] = newProduct;
