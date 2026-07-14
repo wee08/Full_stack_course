@@ -29,36 +29,6 @@ const products = [
     price: 28000,
     color: "blue",
   },
-  {
-    id: 6,
-    name: "Badminton Racket",
-    price: 95000,
-    color: "red",
-  },
-  {
-    id: 7,
-    name: "Shuttlecock",
-    price: 12000,
-    color: "white",
-  },
-  {
-    id: 8,
-    name: "Baseball Bat",
-    price: 85000,
-    color: "wood",
-  },
-  {
-    name: "Baseball",
-    id: 9,
-    price: 18000,
-    color: "white",
-  },
-  {
-    id: 10,
-    name: "Boxing Gloves",
-    price: 70000,
-    color: "black",
-  },
 ];
 
 module.exports = products;

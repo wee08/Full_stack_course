@@ -28,3 +28,11 @@ homework
 - delete student
 
 3. create data student
+
+req.query : this is an object containing parameters pass in the query string
+ex: url?var=sth
+
+req.params : this is an object in Express that holds the values from dynamic segments in your route path — the parts you define with a colon (:).
+ex: url/:id, url/12 -> id = 12
+
+req.body : this is an object containing the data sent in the body of a request — typically used with POST, PUT, and PATCH requests, when the client is sending data to create or update something.

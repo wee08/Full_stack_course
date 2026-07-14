@@ -1,0 +1,18 @@
+$kind: http-request
+name: Update product
+url: http://localhost:3000/v1/api/product/update
+method: PUT
+body:
+  type: json
+  content: "{\r
+
+    \    \"id\": 2,\r
+
+    \    \"name\": \"Football\",\r
+
+    \    \"price\": 30000,\r
+
+    \    \"color\": \"orange\"\r
+
+    }"
+order: 4480380973153249

@@ -17,6 +17,7 @@ const updateProduct = (req, res) => {
   });
 
   res.send({
+    message: "updated",
     product: products,
   });
 };

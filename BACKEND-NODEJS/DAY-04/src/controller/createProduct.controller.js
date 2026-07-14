@@ -1,11 +1,11 @@
 const products = require("../data/product");
 
 const createProduct = (req, res) => {
-  const { product, price, color } = req.body;
+  const { name, price, color } = req.body;
 
   const newProduct = {
     id: products.length + 1,
-    product,
+    name,
     price: Number(price),
     color,
   };
