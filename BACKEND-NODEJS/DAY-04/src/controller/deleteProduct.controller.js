@@ -1,7 +1,7 @@
 const products = require("../data/product");
 
 const deletProduct = (req, res) => {
-  const id = req.query.id;
+  const { id } = req.body;
 
   products.map((item, idx) => {
     if (id == item.id) {
