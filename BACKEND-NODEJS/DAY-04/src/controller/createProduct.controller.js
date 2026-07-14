@@ -1,23 +1,21 @@
 const products = require("../data/product");
 
 const createProduct = (req, res) => {
-  const names =
-    Array.isArray(req.query.name) ? req.query.name : [req.query.name];
-  const prices =
-    Array.isArray(req.query.price) ? req.query.price : [req.query.price];
-  const colors =
-    Array.isArray(req.query.color) ? req.query.color : [req.query.color];
+  const { product, price, color } = req.body;
 
-  const newProduct = names.map((name, i) => ({
-    id: products.length + i + 1,
-    name,
-    price: Number(prices[i]),
-    color: colors[i],
-  }));
+  const newProduct = {
+    id: products.length + 1,
+    product,
+    price: Number(price),
+    color,
+  };
 
-  products.push(...newProduct);
+  products.push(newProduct);
+
   res.send({
-    product: products,
+    product: newProduct,
+    products,
   });
 };
+
 module.exports = createProduct;
