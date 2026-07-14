@@ -6,10 +6,13 @@ const deletProduct = (req, res) => {
   products.map((item, idx) => {
     if (id == item.id) {
       products.splice(idx, 1);
+      res.send({ product: products });
+    } else {
+      res.send({
+        message: "product not found!",
+      });
     }
   });
-
-  res.send({ product: products });
 };
 
 module.exports = deletProduct;

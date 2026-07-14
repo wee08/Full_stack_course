@@ -12,13 +12,17 @@ const updateProduct = (req, res) => {
     let replace_idx;
     if (item.id == id) {
       replace_idx = idx;
+      products[replace_idx] = newProduct;
+      res.send({
+        message: "updated",
+        product: products,
+      });
+    } else {
+      res.send({
+        message: "product not found!",
+      });
+      return;
     }
-    products[replace_idx] = newProduct;
-  });
-
-  res.send({
-    message: "updated",
-    product: products,
   });
 };
 module.exports = updateProduct;
