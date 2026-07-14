@@ -1,4 +1,4 @@
-const productList = require("../data/product");
+const products = require("../data/product");
 
 const updateProduct = (req, res) => {
   const id = req.query.id;
@@ -9,7 +9,7 @@ const updateProduct = (req, res) => {
   const colors =
     Array.isArray(req.query.color) ? req.query.color : [req.query.color];
 
-  const targetProduct = productList.map((item, idx) => {
+  const targetProduct = products.map((item, idx) => {
     let replace_idx;
     const newProduct = {
       product: products[idx],
@@ -20,11 +20,11 @@ const updateProduct = (req, res) => {
     if (item.id == id) {
       replace_idx = idx;
     }
-    productList[replace_idx] = newProduct;
+    products[replace_idx] = newProduct;
   });
 
   res.send({
-    product: productList,
+    product: products,
   });
 };
 module.exports = updateProduct;

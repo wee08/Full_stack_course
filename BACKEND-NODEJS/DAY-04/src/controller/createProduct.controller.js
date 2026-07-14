@@ -1,4 +1,4 @@
-const productList = require("../data/product");
+const products = require("../data/product");
 
 const createProduct = (req, res) => {
   const products =
@@ -10,14 +10,14 @@ const createProduct = (req, res) => {
 
   const newProduct = products.map((name, i) => ({
     product: name,
-    id: productList.length + i + 1,
+    id: products.length + i + 1,
     price: Number(prices[i]),
     color: colors[i],
   }));
 
-  productList.push(...newProduct);
+  products.push(...newProduct);
   res.send({
-    product: productList,
+    product: products,
   });
 };
 module.exports = createProduct;

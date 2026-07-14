@@ -1,15 +1,15 @@
-const productList = require("../data/product");
+const products = require("../data/product");
 
 const deletProduct = (req, res) => {
   const id = req.query.id;
 
-  productList.map((item, idx) => {
+  products.map((item, idx) => {
     if (id == item.id) {
-      productList.splice(idx, 1);
+      products.splice(idx, 1);
     }
   });
 
-  res.send({ product: productList });
+  res.send({ product: products });
 };
 
 module.exports = deletProduct;
