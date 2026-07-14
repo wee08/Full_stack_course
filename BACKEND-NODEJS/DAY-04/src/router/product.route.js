@@ -7,7 +7,7 @@ const createProduct = require("../controller/createProduct.controller");
 module.exports = [
   { method: "get", path: "/v1/api/product/list", handler: getAllProduct },
   { method: "get", path: "/v1/api/product/get/:id", handler: getProductById },
-  { method: "post", path: "/v1/api/product/create", handler: createProduct },
+  { method: "get", path: "/v1/api/product/create", handler: createProduct },
   { method: "put", path: "/v1/api/product/update", handler: updateProduct },
   { method: "delete", path: "/v1/api/product/delete", handler: deleteProduct },
 ];
