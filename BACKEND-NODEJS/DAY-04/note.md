@@ -32,3 +32,5 @@ get all product - > already existing
 req.query - url?var=sth&var=sth
 req.params - url/value, url/:var
 req.body - pass as an object in body - raw - json
+
+api blocks by cors policy in nodejs - cross origin resource sharing

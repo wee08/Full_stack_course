@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Testing fetching APi</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <table>
+      <thead>
+        <tr>
+          <th>id</th>
+          <th>name</th>
+          <th>price</th>
+          <th>color</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>Iced latte</td>
+          <td>$3.50</td>
+          <td>brown</td>
+        </tr>
+        <!-- more rows -->
+      </tbody>
+    </table>
+  </body>
+  <script>
+    const getAllDataAPI = "http://localhost:3000/v1/api/product/list";
+    fetch(getAllDataAPI)
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (data) {
+        console.table(data);
+      })
+      .catch(function (error) {
+        console.log(error.message);
+      });
+  </script>
+</html>
