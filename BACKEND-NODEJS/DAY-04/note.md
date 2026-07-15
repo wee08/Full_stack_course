@@ -28,3 +28,7 @@ get all product - > already existing
 - create product - > do it --> get from query paramerter
 - update product - > do it
 - delete product - > do it
+
+req.query - url?var=sth&var=sth
+req.params - url/value, url/:var
+req.body - pass as an object in body - raw - json
