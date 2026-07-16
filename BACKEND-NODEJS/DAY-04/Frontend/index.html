@@ -12,8 +12,7 @@
       <input type="text" id="name" placeholder="Product Name" />
       <input type="number" id="price" placeholder="Product Price" />
       <input type="text" id="color" placeholder="Product Color" />
-      <button type="submit" id="save-btn" >save</button>
-  </button>
+      <button type="submit" id="save-btn">save</button>
     </div>
     <table>
       <thead>
@@ -30,14 +29,15 @@
       <tbody id="tbody"></tbody>
     </table>
   </body>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script>
     const baseURL = "http://localhost:3000/v1/api/product/";
 
     const tbody = document.getElementById("tbody");
     const addBtn = document.getElementById("submit-btn");
     const saveBtn = document.getElementById("save-btn");
-    const popup = document.getElementById("popup")
-    const editBtn = document.querySelectorAll(".edit-btn")
+    const popup = document.getElementById("popup");
+    const editBtn = document.querySelectorAll(".edit-btn");
 
     let btnAction;
     let id;
@@ -58,7 +58,7 @@
                   <td>${objects[i].color}</td>
                   <td>
                     <button class="edit-btn" id="edit-btn-${objects[i].id}" onclick="handleEdit(${objects[i].id})">Edit</button>
-                    <button class="delete-btn" id="delet-btn-${objects[i].id}" onclick="handleDelete(${objects[i].id})">Delete</button>
+                    <button class="delete-btn" id="delet-btn-${objects[i].id}" onclick="handleDeleteItem(${objects[i].id})">Delete</button>
                   </td>
                 </tr>
             `;
@@ -75,8 +75,8 @@
 
       popup.classList.add("hidden");
 
-      fetch(baseURL + ( btnAction === addBtn.innerHTML ? "create":"update"), {
-        method: btnAction === addBtn.innerHTML ? "POST":"PUT",
+      fetch(baseURL + (btnAction === addBtn.innerHTML ? "create" : "update"), {
+        method: btnAction === addBtn.innerHTML ? "POST" : "PUT",
         headers: { "content-Type": "application/json" },
         body: JSON.stringify({
           id,
@@ -87,7 +87,7 @@
       })
         .then(() => getAllItem())
         .catch((error) => alert(error.message));
-    }
+    };
 
     addBtn.onclick = (e) => {
       btnAction = e.target.innerHTML;
@@ -97,11 +97,28 @@
     function handleEdit(productId) {
       btnAction = "Edit";
       id = productId;
-      popup.classList.remove('hidden');
+      popup.classList.remove("hidden");
     }
 
-    function handleDelete(e) {
-      const id = e;
+    function handleDeleteItem(targetId) {
+      const id = targetId;
+      Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          handleDelete(id);
+        }
+      });
+    }
+
+    function handleDelete(productId) {
+      const id = productId;
       fetch(baseURL + "delete", {
         method: "DELETE",
         headers: { "content-Type": "application/json" },
@@ -109,7 +126,15 @@
           id,
         }),
       })
-        .then(() => getAllItem())
+        .then((res) => res.json())
+        .then((data) => {
+          const product = data.producs.find((p) => p.id === productId);
+          document.getElementById("name").value = product.name;
+          document.getElementById("price").value = product.price;
+          document.getElementById("color").value = product.color;
+
+          popup.classList.remove("hidden");
+        })
         .catch((error) => alert(error.message));
     }
   </script>
