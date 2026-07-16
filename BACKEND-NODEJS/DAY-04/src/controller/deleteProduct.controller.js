@@ -3,15 +3,18 @@ const products = require("../data/product");
 const deletProduct = (req, res) => {
   const { id } = req.body;
 
-  products.map((item, idx) => {
-    if (id == item.id) {
-      products.splice(idx, 1);
-      res.send({ product: products });
-    } else {
-      res.send({
-        message: "product not found!",
-      });
-    }
+  const index = products.findIndex((item) => item.id == Number(id));
+
+  if (index === -1) {
+    res.send({
+      message: "product not found!",
+    });
+    return;
+  }
+
+  products.splice(index, 1);
+  res.send({
+    products,
   });
 };
 
