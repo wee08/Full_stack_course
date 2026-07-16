@@ -23,9 +23,7 @@
           <th>price</th>
           <th>color</th>
           <th>
-            <button type="submit" id="submit-btn" >
-              Add Product
-            </button>
+            <button type="submit" id="submit-btn">Add Product</button>
           </th>
         </tr>
       </thead>
@@ -34,6 +32,9 @@
   </body>
   <script>
     const baseURL = "http://localhost:3000/v1/api/product/";
+
+    let btnAction;
+
     const tbody = document.getElementById("tbody");
     let id;
     function getAllItem() {
@@ -51,7 +52,7 @@
                   <td>${objects[i].price}</td>
                   <td>${objects[i].color}</td>
                   <td>
-                    <button class="edit-btn" id="edit-btn-${objects[i].id}" onclick="handleEdit(${objects[i].id})" >Edit</button>
+                    <button class="edit-btn" id="edit-btn-${objects[i].id}" onclick="handleEdit(${objects[i].id})">Edit</button>
                     <button class="delete-btn" id="delet-btn-${objects[i].id}" onclick="handleDelete(${objects[i].id})">Delete</button>
                   </td>
                 </tr>
@@ -65,37 +66,16 @@
     const addBtn = document.getElementById("submit-btn");
     const saveBtn = document.getElementById("save-btn");
     const popup = document.getElementById("popup")
-
+    const editBtn = document.querySelectorAll(".edit-btn")
     saveBtn.onclick = () => {
       const name = document.getElementById("name").value;
       const price = document.getElementById("price").value;
       const color = document.getElementById("color").value;
 
       popup.classList.add("hidden");
-      fetch(baseURL + "create", {
-        method: "POST",
-        headers: { "content-Type": "application/json" },
-        body: JSON.stringify({
-          name,
-          price,
-          color,
-        }),
-      })
-        .then(() => getAllItem())
-        .catch((error) => alert(error.message));
-    }
 
-    addBtn.onclick = () => {
-      popup.classList.remove("hidden")
-    };
-
-    function handleEdit(e) {
-      const name = document.getElementById("name").value;
-      const price = document.getElementById("price").value;
-      const color = document.getElementById("color").value;
-      const id = e;
-      fetch(baseURL + "update", {
-        method: "PUT",
+      fetch(baseURL + ( btnAction === addBtn.innerHTML ? "create":"update"), {
+        method: btnAction === addBtn.innerHTML ? "POST":"PUT",
         headers: { "content-Type": "application/json" },
         body: JSON.stringify({
           id,
@@ -108,9 +88,20 @@
         .catch((error) => alert(error.message));
     }
 
+    addBtn.onclick = (e) => {
+      btnAction = e.target.innerHTML;
+      popup.classList.remove("hidden");
+    };
+
+
+    function handleEdit(productId) {
+      btnAction = "Edit";
+      id = productId;
+      popup.classList.remove('hidden');
+    }
+
     function handleDelete(e) {
       const id = e;
-      console.log(e);
       fetch(baseURL + "delete", {
         method: "DELETE",
         headers: { "content-Type": "application/json" },
