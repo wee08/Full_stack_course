@@ -33,10 +33,15 @@
   <script>
     const baseURL = "http://localhost:3000/v1/api/product/";
 
-    let btnAction;
-
     const tbody = document.getElementById("tbody");
+    const addBtn = document.getElementById("submit-btn");
+    const saveBtn = document.getElementById("save-btn");
+    const popup = document.getElementById("popup")
+    const editBtn = document.querySelectorAll(".edit-btn")
+
+    let btnAction;
     let id;
+
     function getAllItem() {
       fetch(baseURL + "list")
         .then((response) => response.json())
@@ -63,10 +68,6 @@
     }
     getAllItem();
 
-    const addBtn = document.getElementById("submit-btn");
-    const saveBtn = document.getElementById("save-btn");
-    const popup = document.getElementById("popup")
-    const editBtn = document.querySelectorAll(".edit-btn")
     saveBtn.onclick = () => {
       const name = document.getElementById("name").value;
       const price = document.getElementById("price").value;
@@ -92,7 +93,6 @@
       btnAction = e.target.innerHTML;
       popup.classList.remove("hidden");
     };
-
 
     function handleEdit(productId) {
       btnAction = "Edit";
