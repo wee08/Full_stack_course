@@ -7,14 +7,13 @@
     <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
-    <div class="container">
+    <div class="container hidden" id="popup">
       <h2>Add Product</h2>
-
       <input type="text" id="name" placeholder="Product Name" />
       <input type="number" id="price" placeholder="Product Price" />
       <input type="text" id="color" placeholder="Product Color" />
-
-      <button type="submit" id="submit-btn">Add Product</button>
+      <button type="submit" id="save-btn" >save</button>
+  </button>
     </div>
     <table>
       <thead>
@@ -23,6 +22,11 @@
           <th>name</th>
           <th>price</th>
           <th>color</th>
+          <th>
+            <button type="submit" id="submit-btn" >
+              Add Product
+            </button>
+          </th>
         </tr>
       </thead>
       <tbody id="tbody"></tbody>
@@ -37,7 +41,6 @@
         .then((response) => response.json())
         .then((data) => {
           let item = "";
-
           const length = data.products.length;
           const objects = data.products;
           for (let i = 0; i < length; i++) {
@@ -60,11 +63,15 @@
     getAllItem();
 
     const addBtn = document.getElementById("submit-btn");
+    const saveBtn = document.getElementById("save-btn");
+    const popup = document.getElementById("popup")
 
-    addBtn.onclick = () => {
+    saveBtn.onclick = () => {
       const name = document.getElementById("name").value;
       const price = document.getElementById("price").value;
       const color = document.getElementById("color").value;
+
+      popup.classList.add("hidden");
       fetch(baseURL + "create", {
         method: "POST",
         headers: { "content-Type": "application/json" },
@@ -76,6 +83,10 @@
       })
         .then(() => getAllItem())
         .catch((error) => alert(error.message));
+    }
+
+    addBtn.onclick = () => {
+      popup.classList.remove("hidden")
     };
 
     function handleEdit(e) {
