@@ -8,13 +8,13 @@
   </head>
   <body>
     <div class="container">
-      <label for="name">Name</label>
-      <input type="text" id="name" />
-      <label for="price">price</label>
-      <input type="text" id="price" />
-      <label for="color">color</label>
-      <input type="text" id="color" />
-      <button type="submit">Add</button>
+      <h2>Add Product</h2>
+
+      <input type="text" id="name" placeholder="Product Name" />
+      <input type="number" id="price" placeholder="Product Price" />
+      <input type="text" id="color" placeholder="Product Color" />
+
+      <button type="submit" id="submit-btn">Add Product</button>
     </div>
     <table>
       <thead>
@@ -62,7 +62,7 @@
     }
     getAllItem();
 
-    const addBtn = document.querySelector("button");
+    const addBtn = document.getElementById("submit-btn");
 
     addBtn.onclick = () => {
       const name = document.getElementById("name").value;
