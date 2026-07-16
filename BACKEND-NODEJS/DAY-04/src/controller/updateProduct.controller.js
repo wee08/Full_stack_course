@@ -3,8 +3,8 @@ const products = require("../data/product");
 const updateProduct = (req, res) => {
   const { id, name, price, color } = req.body;
   const newProduct = {
-    name,
     id: Number(id),
+    name,
     price: Number(price),
     color,
   };
@@ -15,7 +15,7 @@ const updateProduct = (req, res) => {
       products[replace_idx] = newProduct;
       res.send({
         message: "updated",
-        product: products,
+        products,
       });
     } else {
       res.send({

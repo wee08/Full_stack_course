@@ -25,20 +25,13 @@
           <th>color</th>
         </tr>
       </thead>
-      <tbody id="tbody">
-        <tr>
-          <td>1</td>
-          <td>Iced latte</td>
-          <td>$3.50</td>
-          <td>brown</td>
-        </tr>
-        <!-- more rows -->
-      </tbody>
+      <tbody id="tbody"></tbody>
     </table>
   </body>
   <script>
     const baseURL = "http://localhost:3000/v1/api/product/";
     const tbody = document.getElementById("tbody");
+    let id;
     function getAllItem() {
       fetch(baseURL + "list")
         .then((response) => response.json())
@@ -50,10 +43,11 @@
           for (let i = 0; i < length; i++) {
             item += `
                 <tr>
-                    <td>${objects[i].id}</td>
-                    <td>${objects[i].name}</td>
-                    <td>${objects[i].price}</td>
-                    <td>${objects[i].color}</td>
+                  <td>${objects[i].id}</td>
+                  <td>${objects[i].name}</td>
+                  <td>${objects[i].price}</td>
+                  <td>${objects[i].color}</td>
+
                 </tr>
             `;
           }
@@ -80,5 +74,25 @@
         .then(() => getAllItem())
         .catch((error) => alert(error.message));
     };
+
+    // function edit(e) {
+    //   const name = document.getElementById("name").value;
+    //   const price = document.getElementById("price").value;
+    //   const color = document.getElementById("color").value;
+    //   const id = e;
+    //   console.log(id);
+    //   fetch(baseURL + "update", {
+    //     method: "PUT",
+    //     headers: { "content-Type": "application/json" },
+    //     body: JSON.stringify({
+    //       id,
+    //       name,
+    //       price,
+    //       color,
+    //     }),
+    //   })
+    //     .then(() => getAllItem())
+    //     .catch((error) => alert(error.message));
+    // }
   </script>
 </html>
