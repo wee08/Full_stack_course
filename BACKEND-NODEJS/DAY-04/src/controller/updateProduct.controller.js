@@ -8,21 +8,17 @@ const updateProduct = (req, res) => {
     price: Number(price),
     color,
   };
-  products.map((item, idx) => {
-    let replace_idx;
-    if (item.id == id) {
-      replace_idx = idx;
-      products[replace_idx] = newProduct;
-      res.send({
-        message: "updated",
-        products,
-      });
-    } else {
-      res.send({
-        message: "product not found!",
-      });
-      return;
-    }
+  const index = products.findIndex((item) => item.id === Number(id));
+  if (index === -1) {
+    res.send({
+      message: "product not found",
+    });
+    return;
+  }
+  products[index] = newProduct;
+  res.send({
+    message: "updated",
+    products,
   });
 };
 module.exports = updateProduct;
