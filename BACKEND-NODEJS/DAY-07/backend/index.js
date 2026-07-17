@@ -1,6 +1,8 @@
 const express = require("express");
 const cors = require("cors");
 
+const userRoute = require("./src/router/user.route");
+
 const app = express();
 
 app.use(express.urlencoded({ extended: true }));
@@ -12,6 +14,7 @@ const PORT = 3000;
 app.get("/", (req, res) => {
   res.send("homepage");
 });
+userRoute(app);
 app.listen(PORT, () => {
   console.log(`http://localhost:${PORT}`);
 });
