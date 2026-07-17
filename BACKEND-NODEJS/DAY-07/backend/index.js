@@ -1,6 +1,13 @@
 const express = require("express");
-const PORT = 3000;
+const cors = require("cors");
+
 const app = express();
+
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(cors());
+
+const PORT = 3000;
 
 app.get("/", (req, res) => {
   res.send("homepage");
