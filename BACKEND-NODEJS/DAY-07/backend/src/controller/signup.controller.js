@@ -14,6 +14,12 @@ const signup = (req, res) => {
     });
     return;
   }
+  const newUser = {
+    email,
+    password,
+    phone,
+  };
+  userData.push(newUser);
   res.send({
     userData,
   });
