@@ -119,6 +119,11 @@
 
     function handleDelete(productId) {
       const id = productId;
+      Swal.fire({
+        title: "Deleted Successfuly!",
+        icon: "success",
+        draggable: true,
+      });
       fetch(baseURL + "delete", {
         method: "DELETE",
         headers: { "content-Type": "application/json" },
