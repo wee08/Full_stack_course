@@ -1,0 +1,8 @@
+$kind: http-request
+name: Create product
+url: "  http://localhost:3000/v1/api/product/delete"
+method: DELETE
+body:
+  type: json
+  content: "{\r\n    \"id\":3\r\n}"
+order: 3510

@@ -1,0 +1,8 @@
+$kind: http-request
+name: Fetch product by ID
+url: http://localhost:3000/v1/api/product/get/2
+method: GET
+body:
+  type: json
+  content: ""
+order: 4063240685009898

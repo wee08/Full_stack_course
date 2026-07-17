@@ -1,0 +1,18 @@
+$kind: http-request
+name: update product
+url: "  http://localhost:3000/v1/api/product/update"
+method: PUT
+body:
+  type: json
+  content: "{\r
+
+    \    \"id\":2,\r
+
+    \    \"name\":\"Coffee\",\r
+
+    \    \"price\":1200,\r
+
+    \    \"color\":\"brown\",\r
+
+    }"
+order: 2000
