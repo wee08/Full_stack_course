@@ -68,12 +68,18 @@
     }
     getAllItem();
 
-    saveBtn.onclick = () => {
+    function handleSaveItem() {
       const name = document.getElementById("name").value;
       const price = document.getElementById("price").value;
       const color = document.getElementById("color").value;
 
       popup.classList.add("hidden");
+
+      Swal.fire({
+        title: btnAction === addBtn.innerHTML ? "Added!" : "Saved!",
+        icon: "success",
+        draggable: true,
+      });
 
       fetch(baseURL + (btnAction === addBtn.innerHTML ? "create" : "update"), {
         method: btnAction === addBtn.innerHTML ? "POST" : "PUT",
@@ -87,6 +93,21 @@
       })
         .then(() => getAllItem())
         .catch((error) => alert(error.message));
+    }
+
+    saveBtn.onclick = () => {
+      Swal.fire({
+        title: "Are you sure?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Save",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          handleSaveItem();
+        }
+      });
     };
 
     addBtn.onclick = (e) => {
@@ -120,7 +141,7 @@
     function handleDelete(productId) {
       const id = productId;
       Swal.fire({
-        title: "Deleted Successfuly!",
+        title: "Deleted!",
         icon: "success",
         draggable: true,
       });
