@@ -128,7 +128,10 @@
       })
         .then((res) => res.json())
         .then((data) => {
-          const product = data.producs.find((p) => p.id === productId);
+          // const product = data.products.find((p) => p.id === productId);
+          const product = data.products.find((p) => p.id === productId);
+          console.log(product);
+
           document.getElementById("name").value = product.name;
           document.getElementById("price").value = product.price;
           document.getElementById("color").value = product.color;
