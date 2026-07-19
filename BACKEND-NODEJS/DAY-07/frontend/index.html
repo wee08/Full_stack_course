@@ -25,7 +25,8 @@
             id="password"
             placeholder="password"
             autocomplete="current-password" />
-          <a href="#">Forget Password</a>
+          <p>password</p>
+          <a href="#" id="message">Forget Password</a>
         </div>
         <button type="button" class="login-btn" id="login-btn">Login</button>
         <div class="sign-up">
@@ -35,21 +36,17 @@
       </form>
     </main>
   </body>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script>
     const emailEle = document.getElementById("email");
     const passworrdEle = document.getElementById("password");
     const loginBtn = document.getElementById("login-btn");
+    const messageEle = document.getElementById("message");
 
     const baseURL = "http://localhost:3000/v1/api/user/";
 
-    function getAllUser() {
-      fetch(baseURL)
-        .then((res) => res.json())
-        .then((data) => console.log(data.userData));
-    }
-    getAllUser();
-
     const handleLogin = () => {
+      let state;
       const email = emailEle.value;
       const password = passworrdEle.value;
 
@@ -62,7 +59,20 @@
         }),
       })
         .then((res) => res.json())
-        .then((data) => console.log(data))
+        .then((data) => {
+          console.log(data);
+          state = data.success;
+          if (!state) {
+            messageEle.innerHTML = data.message;
+            messageEle.className = "error";
+          } else {
+            messageEle.innerHTML = Swal.fire({
+              title: "Login!",
+              icon: "success",
+              draggable: true,
+            });
+          }
+        })
         .catch((error) => console.log(error.message));
     };
 
