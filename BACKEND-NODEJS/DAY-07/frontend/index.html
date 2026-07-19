@@ -20,13 +20,18 @@
             id="email"
             placeholder="email"
             autocomplete="username" />
-          <input
-            type="password"
-            id="password"
-            placeholder="password"
-            autocomplete="current-password" />
-          <p>password</p>
-          <a href="#" id="message">Forget Password</a>
+          <div id="password-field">
+            <input
+              type="password"
+              id="password"
+              placeholder="password"
+              autocomplete="current-password" />
+            <p class="alert-message" id="alert-message"></p>
+          </div>
+          <div class="password-act">
+            <p class="alert-signup" id="alert-signup"></p>
+            <a href="#" id="message">Forget Password</a>
+          </div>
         </div>
         <button type="button" class="login-btn" id="login-btn">Login</button>
         <div class="sign-up">
@@ -42,11 +47,14 @@
     const passworrdEle = document.getElementById("password");
     const loginBtn = document.getElementById("login-btn");
     const messageEle = document.getElementById("message");
+    const alertMessageEle = document.getElementById("alert-message");
+    const alertSigupEle = document.getElementById("alert-signup");
 
     const baseURL = "http://localhost:3000/v1/api/user/";
 
     const handleLogin = () => {
       let state;
+      let feat;
       const email = emailEle.value;
       const password = passworrdEle.value;
 
@@ -60,13 +68,19 @@
       })
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
           state = data.success;
+          feat = data.feat;
           if (!state) {
-            messageEle.innerHTML = data.message;
-            messageEle.className = "error";
+            if (feat === "password") {
+              alertMessageEle.innerHTML = data.message;
+              alertSigupEle.innerHTML = "";
+            } else if (feat === "email") {
+              alertMessageEle.innerHTML = "";
+              alertSigupEle.innerHTML = data.message;
+            }
           } else {
-            messageEle.innerHTML = Swal.fire({
+            alertMessageEle.innerHTML = "";
+            Swal.fire({
               title: "Login!",
               icon: "success",
               draggable: true,

@@ -6,7 +6,11 @@ const login = (req, res) => {
   const index = userData.findIndex((i) => i.email === email);
 
   if (index == -1) {
-    return res.send({ success: false, message: "do you want to sign up?" });
+    return res.send({
+      status: false,
+      feat: "email",
+      message: "do you want to sign up?",
+    });
   }
   const userEmail = userData[index].email;
   const userPassword = userData[index].password;
@@ -14,7 +18,8 @@ const login = (req, res) => {
 
   if (userPassword !== password) {
     return res.send({
-      success: false,
+      status: false,
+      feat: "password",
       message: "incorrect password!",
     });
   }
