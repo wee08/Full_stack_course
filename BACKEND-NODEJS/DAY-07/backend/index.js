@@ -14,7 +14,9 @@ const PORT = 3000;
 app.get("/", (req, res) => {
   res.send("homepage");
 });
-userRoute(app);
+userRoute.forEach((route) => {
+  app[route.method](route.path, route.handler);
+});
 app.listen(PORT, () => {
   console.log(`http://localhost:${PORT}`);
 });

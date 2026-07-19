@@ -1,7 +1,7 @@
 const userData = [
   {
-    email: "sokha.chan@gmail.com",
-    password: "sokha2024",
+    email: "manutnithya08@gmail.com",
+    password: "123",
     phone: "012345678",
   },
   {
