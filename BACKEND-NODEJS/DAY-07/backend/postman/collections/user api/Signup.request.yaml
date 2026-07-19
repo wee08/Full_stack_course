@@ -1,18 +1,18 @@
 $kind: http-request
-name: check existing
+name: Signup
 url: http://localhost:3000/v1/api/user/signup
 method: POST
 body:
   type: json
   content: "  {\r
 
-    \    \"email\": \"manutnithya.sean@gmail.com\",\r
+    \    \"email\": \"malis.tep@outlook.com\",\r
 
     \    \"password\": \"sokha2024\",\r
 
     \    \"confirmPassword\": \"sokha2024\",\r
 
-    \    \"phone\": \"012345678\"\r
+    \    \"phone\":\"12123123\"\r
 
     \  }"
-order: 1000
+order: 2086

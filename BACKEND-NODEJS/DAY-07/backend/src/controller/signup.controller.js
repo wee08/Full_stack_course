@@ -1,18 +1,22 @@
 const userData = require("../data/user_data");
 const signup = (req, res) => {
   const { email, password, confirmPassword, phone } = req.body;
-  const isUserExisted = userData.find((user) => user.email === email);
-  if (isUserExisted) {
-    res.send({
-      message: "user already exist",
+
+  const index = userData.findIndex((i) => i.email === email);
+  if (index !== -1) {
+    return res.send({
+      status: false,
+      feat: "email",
+      message: "user already exists",
     });
-    return;
   }
+
   if (password !== confirmPassword) {
-    res.send({
+    return res.send({
+      status: false,
+      feat: "password",
       message: "password doesn't match!",
     });
-    return;
   }
   const newUser = {
     email,
@@ -21,7 +25,8 @@ const signup = (req, res) => {
   };
   userData.push(newUser);
   res.send({
-    userData,
+    status: true,
+    newUser,
   });
 };
 

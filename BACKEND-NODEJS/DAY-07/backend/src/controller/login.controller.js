@@ -28,7 +28,7 @@ const login = (req, res) => {
 
   if (userEmail === email && userPassword === password) {
     return res.send({
-      success: true,
+      status: true,
       userInfo,
     });
   }
