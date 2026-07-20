@@ -87,7 +87,7 @@ body {
 #email {
   margin-bottom: 20px;
 }
-#password-field {
+.password-field {
   position: relative;
   width: 100%;
 }

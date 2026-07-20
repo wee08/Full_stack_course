@@ -15,18 +15,21 @@
       <form class="login-form">
         <h1>Sign up</h1>
         <div class="input-container">
-          <input
-            type="email"
-            id="email"
-            placeholder="email"
-            autocomplete="username" />
-          <div id="password-field">
+          <div class="password-field">
+            <input
+              type="email"
+              id="email"
+              placeholder="email"
+              autocomplete="username" />
+            <p class="alert-message" id="alert-message-email"></p>
+          </div>
+          <div class="password-field" id="password-field">
             <input
               type="password"
               id="password"
               placeholder="password"
               autocomplete="new-password" />
-            <p class="alert-message" id="alert-message"></p>
+            <p class="alert-message" id="alert-message-pass"></p>
           </div>
           <input
             type="password"
@@ -34,6 +37,7 @@
             placeholder="confirm password"
             autocomplete="new-password" />
           <input type="text" id="phone" placeholder="phone" />
+          <p class="alert-signup" id="alert-login"></p>
         </div>
         <button type="button" class="login-btn" id="signup-btn">Sign Up</button>
         <div class="sign-up">
@@ -43,11 +47,14 @@
       </form>
     </main>
   </body>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script>
     const emailEle = document.getElementById("email");
     const passworrdEle = document.getElementById("password");
     const cfPasswordEle = document.getElementById("cf-password");
-    const alertMessageELe = document.getElementById("alert-message");
+    const alertMessagePassELe = document.getElementById("alert-message-pass");
+    const alertMessageEmailELe = document.getElementById("alert-message-email");
+    const alertLoginEle = document.getElementById("alert-login");
     const phoneELe = document.getElementById("phone");
 
     const signupBtn = document.getElementById("signup-btn");
@@ -57,14 +64,14 @@
       const cfPassword = cfPasswordEle.value;
 
       if (cfPassword.length === 0) {
-        alertMessageELe.innerHTML = "";
+        alertMessagePassELe.innerHTML = "";
         return false;
       }
       if (password !== cfPassword) {
-        alertMessageELe.innerHTML = "password not match!";
+        alertMessagePassELe.innerHTML = "password not match!";
         return false;
       } else {
-        alertMessageELe.innerHTML = "";
+        alertMessagePassELe.innerHTML = "";
         return true;
       }
     };
@@ -90,7 +97,20 @@
         }),
       })
         .then((res) => res.json())
-        .then((data) => console.log(data))
+        .then((data) => {
+          if (data.feat === "email") {
+            alertMessageEmailELe.innerHTML = data.message;
+            alertLoginEle.innerHTML = data.message + " login instead";
+          } else {
+            alertLoginEle.innerHTML = "";
+            alertMessageEmailELe.innerHTML = "";
+            Swal.fire({
+              title: "Signup!",
+              icon: "success",
+              draggable: true,
+            });
+          }
+        })
         .catch((error) => console.log(error.message));
     };
     signupBtn.onclick = () => {
