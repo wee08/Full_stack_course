@@ -10,14 +10,6 @@ const signup = (req, res) => {
       message: "user already exists",
     });
   }
-
-  if (password !== confirmPassword) {
-    return res.send({
-      status: false,
-      feat: "password",
-      message: "password doesn't match!",
-    });
-  }
   const newUser = {
     email,
     password,
