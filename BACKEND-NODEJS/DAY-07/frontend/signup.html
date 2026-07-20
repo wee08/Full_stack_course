@@ -15,12 +15,24 @@
       <form class="login-form">
         <h1>Sign up</h1>
         <div class="input-container">
-          <input type="email" id="email" placeholder="email" />
-          <input type="password" id="password" placeholder="password" />
+          <input
+            type="email"
+            id="email"
+            placeholder="email"
+            autocomplete="username" />
+          <div id="password-field">
+            <input
+              type="password"
+              id="password"
+              placeholder="password"
+              autocomplete="new-password" />
+            <p class="alert-message" id="alert-message"></p>
+          </div>
           <input
             type="password"
             id="cf-password"
-            placeholder="confirm password" />
+            placeholder="confirm password"
+            autocomplete="new-password" />
           <input type="text" id="phone" placeholder="phone" />
         </div>
         <button type="button" class="login-btn" id="signup-btn">Sign Up</button>
@@ -35,6 +47,7 @@
     const emailEle = document.getElementById("email");
     const passworrdEle = document.getElementById("password");
     const cfPasswordEle = document.getElementById("cf-password");
+    const alertMessageELe = document.getElementById("alert-message");
     const phoneELe = document.getElementById("phone");
 
     const signupBtn = document.getElementById("signup-btn");
@@ -43,10 +56,22 @@
       const password = passworrdEle.value;
       const cfPassword = cfPasswordEle.value;
 
+      if (cfPassword.lenght === 0) {
+        alertMessageELe.innerHTML = "";
+        return false;
+      }
       if (password !== cfPassword) {
-        alert("test");
+        alertMessageELe.innerHTML = "password not match!";
+        return false;
+      } else {
+        alertMessageELe.innerHTML = "";
+        return true;
       }
     };
+    passworrdEle.addEventListener("input", isMissMatch);
+    cfPasswordEle.addEventListener("input", isMissMatch);
+
+    const handleSignup = () => {};
     signupBtn.onclick = () => {
       isMissMatch();
     };
