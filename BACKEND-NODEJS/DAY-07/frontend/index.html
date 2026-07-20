@@ -68,16 +68,20 @@
       })
         .then((res) => res.json())
         .then((data) => {
-          state = data.success;
+          state = data.status;
           feat = data.feat;
+          console.log(state);
           if (!state) {
             if (feat === "password") {
               alertMessageEle.innerHTML = data.message;
               alertSigupEle.innerHTML = "";
-            } else if (feat === "email") {
+              return;
+            }
+            if (feat === "email") {
               alertMessageEle.innerHTML = "";
               alertSigupEle.innerHTML = data.message;
             }
+            return;
           } else {
             alertMessageEle.innerHTML = "";
             alertSigupEle.innerHTML = "";
