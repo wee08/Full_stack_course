@@ -56,7 +56,7 @@
       const password = passworrdEle.value;
       const cfPassword = cfPasswordEle.value;
 
-      if (cfPassword.lenght === 0) {
+      if (cfPassword.length === 0) {
         alertMessageELe.innerHTML = "";
         return false;
       }
@@ -81,16 +81,17 @@
 
       fetch(baseURL + "signup", {
         method: "POST",
-        headers: { "Content-Type": "applicatoin/json" },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          email: "malis.tep@outl123123ook.com",
-          password: "sokha2024",
-          confirmPassword: "sokha2024",
-          phone: "12123123",
+          email,
+          password,
+          confirmPassword,
+          phone,
         }),
       })
-        .then((res) => console.log(res))
-        .catch((error) => alert(error.message));
+        .then((res) => res.json())
+        .then((data) => console.log(data))
+        .catch((error) => console.log(error.message));
     };
     signupBtn.onclick = () => {
       handleSignup();
