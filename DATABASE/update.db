@@ -1,0 +1,41 @@
+- update all row of the column
+
+UPDATE student
+SET age = 100, remark = 'testing'
+
+- udpate specific row using where condition
+
+- UPDATE student
+SET age = 20, remark = ""
+WHERE stuid = 'S02'
+
+- update student with multiple row
+
+UPDATE student
+SET age = 20, remark = 'testing'
+WHERE stuid IN ("S01","S02")
+- for many row we can also use excel
+
+- get data base on condition age >= 20 && remark = 'f'
+SELECT * FROM `student`
+WHERE age >= 20 && remark = 'f'
+
+SELECT * FROM `student`
+WHERE age >= 20 || remark = 'f'
+
+- find data base of letter
+
+remark -> female, female, male, female , male
+
+SELECT * FROM `student` 
+WHERE remark LIKE 'f%'
+--> female, female, female - get everything that have 'f'
+
+WHERE remark LIKE '%e' - get everything that have 'e'
+--> female, female, male, female , male
+
+- AUTO_INCREMENT can use with PRIMARY KEY and INTEGER only
+
+- TRANCATE - clear data and reset id with AUTO_INCREMENT makes it start back from 1
+TRANCATE TABLE table_name
+
