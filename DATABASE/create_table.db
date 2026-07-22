@@ -1,0 +1,31 @@
+CREATE TABLE IF NOT EXISTS `employee` (
+    `emp_id` int unsigned NOT NULL AUTO_INCREMENT,
+    `emp_name` varchar(100) NOT NULL,
+    `gender` char NOT NULL,
+    `dep_id` integer,
+    `pos_id` integer,
+    `remark` varchar(100),
+    `dob` date,
+    `phone` varchar(10),
+    `office_id` integer,
+    PRIMARY KEY (`emp_id`)
+);
+CREATE TABLE IF NOT EXISTS `department`(
+    `dep_id` integer NOT NULL, PRIMARY KEY (`dep_id`),
+    `dep_name` varchar(100) NOT NULL,
+    `status` varchar(20) NOT NULL
+    );
+CREATE TABLE IF NOT EXISTS `position` (
+  	`pos_id` INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+  	`pos_name` varchar(100) NOT NULL,
+    `status` varchar(20) NOT NULL,
+   	PRIMARY KEY(`pos_id`)
+);
+
+CREATE TABLE IF NOT EXISTS `office`  (
+	`office_id` integer unsigned NOT NULL AUTO_INCREMENT,
+    `name` varchar(100) NOT NULL,
+    `locatoin` varchar(40),
+    PRIMARY KEY (`office_id`)
+);
+

@@ -1,0 +1,27 @@
+[
+  {
+    "type": "header",
+    "version": "5.2.3",
+    "comment": "Export to JSON plugin for phpMyAdmin"
+  },
+  { "type": "database", "name": "basicdb" },
+  {
+    "type": "table",
+    "name": "tbl_user",
+    "database": "basicdb",
+    "data": [
+      {
+        "user_id": "A01",
+        "email": "manutnithyasean@gmail.com",
+        "password": "123123",
+        "status": ""
+      },
+      {
+        "user_id": "A02",
+        "email": "dara@gmail.com",
+        "password": "1232",
+        "status": ""
+      }
+    ]
+  }
+]

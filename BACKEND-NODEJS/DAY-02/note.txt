@@ -2,3 +2,10 @@
 - it created on V8 javascript engine
 - we create API, Web APP ... 
 - nodejs is fast because it works as non-blocking and asynchronous
+
+
+
+forget password logic 
+ - verify
+ - send email
+ - reset password

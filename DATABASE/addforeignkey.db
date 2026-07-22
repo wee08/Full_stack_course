@@ -1,0 +1,11 @@
+ALTER TABLE `position`
+ADD FOREIGN KEY (`pos_id`) REFERENCES `employee` (`pos_id`)
+ON UPDATE NO ACTION ON DELETE NO ACTION;
+
+ALTER TABLE `office` 
+ADD FOREIGN KEY (`office_id`) REFERENCES `employee` (`office_id`)
+ON UPDATE NO ACTION ON DELETE NO ACTION;
+
+ALTER TABLE `department`
+ADD FOREIGN KEY (`dep_id`) REFERENCES `employee` (`dep_id`)
+ON UPDATE NO ACTION ON DELETE NO ACTION;
