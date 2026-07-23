@@ -1,0 +1,29 @@
+- get average value
+SELECT AVG(price) FROM `product`  
+
+SELECT AVG(price) as average_price FROM `product`  
+
+- count item
+SELECT
+    COUNT(*) as total_product  ,
+	sum(price) as total_price
+FROM `product`  
+WHERE price > 20
+
+- count employee and group them
+SELECT COUNT(*) as total_employee,
+	gender,
+    SUM(salary) as total_salary
+FROM employee
+GROUP BY gender
+
+- count employee , group base gender and find min, max
+SELECT COUNT(*) as total_employee,
+	gender,
+    SUM(salary) as total_salary,
+    MAX(salary) as highest_salary,
+    MIN(salary) as lowest_salary
+FROM employee
+GROUP BY gender
+
+-

@@ -1,0 +1,23 @@
+- join used for combine 2 or more tables 
+    1. inner join
+    2. left join
+    3. right join
+
+- inner join 
+
+SELECT
+    employee.emp_id,
+    employee.emp_name,
+    position.pos_name
+FROM `employee` 
+INNER JOIN position
+on employee.pos_id = position.pos_id
+
+SELECT
+E.emp_id,
+E.emp_name,
+P.pos_name
+FROM `employee` E
+INNER JOIN position P
+on E.pos_id = P.pos_id                                         
+
