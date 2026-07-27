@@ -36,3 +36,25 @@ req.params : this is an object in Express that holds the values from dynamic seg
 ex: url/:id, url/12 -> id = 12
 
 req.body : this is an object containing the data sent in the body of a request — typically used with POST, PUT, and PATCH requests, when the client is sending data to create or update something.
+
+- connect to database
+  npm i mysql2 -> config folder create config.js file to connect
+
+const mysql = require("mysql2");
+const connection = mysql.createConnection({
+host: "localhost",
+user: "root",
+password: "",
+database: "emp_management",
+});
+
+// connect ot db handle error
+connection.connect((error) => {
+if (error) {
+console.error("data base not connect", error);
+return;
+}
+console.log("connected");
+});
+
+module.exports = connection;
