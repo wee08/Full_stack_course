@@ -1,6 +1,6 @@
-const getTeacher = require("../controller/teacher.controller");
+const employee = require("../controller/employee.controller");
 const teacherRoute = (app) => {
-  app.get("/api/teacher/list", getTeacher);
+  app.get("/api/teacher/emp", employee);
 };
 
 module.exports = teacherRoute;
