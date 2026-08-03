@@ -1,0 +1,18 @@
+$kind: http-request
+name: create product
+url: http://localhost:3000/v1/api/product/create
+method: POST
+body:
+  type: json
+  content: "{\r
+
+    \    \"pro_id\":\"P20\",\r
+
+    \    \"pro_name\":\"T-shirt\",\r
+
+    \    \"pro_price\":100.00,\r
+
+    \    \"import_date\":\"2026-08-12\"\r
+
+    }"
+order: 3000

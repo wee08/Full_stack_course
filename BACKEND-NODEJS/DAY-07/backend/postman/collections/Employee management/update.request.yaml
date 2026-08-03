@@ -1,0 +1,26 @@
+$kind: http-request
+name: update
+url: http://localhost:3000/v1/api/employee/updateEmp/Emp02
+method: PUT
+body:
+  type: json
+  content: "{\r
+
+    \    \"empName\":\"mamakoko\",\r
+
+    \    \"gender\":\"F\",\r
+
+    \    \"positionID\":\"PO2\",\r
+
+    \    \"departmentID\":\"D02\",\r
+
+    \    \"officeID\":\"Of_001\",\r
+
+    \    \"divisionID\":\"Div_001\",\r
+
+    \    \"branchID\":\"branch_009\",\r
+
+    \    \"remark\":\"100\"\r
+
+    }   "
+order: 1000
