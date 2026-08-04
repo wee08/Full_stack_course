@@ -58,3 +58,8 @@ console.log("connected");
 });
 
 module.exports = connection;
+
+
+generate secrete token : cmd line
+  node -e "console.log(require('crypto').randomBytes(64).toString('hex'))"
+  
