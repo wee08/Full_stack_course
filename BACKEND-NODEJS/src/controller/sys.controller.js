@@ -1,5 +1,8 @@
 const db = require("../config/config");
 const { missing, checkEmpExistend } = require("../helper/validate");
+const dotenv = require("dotenv");
+dotenv.config();
+
 const fetchAllEmployee = async () => {
   const sql = `SELECT * FROM employee WHERE 1`;
   const result = await db.query(sql);
