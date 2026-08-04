@@ -1,9 +1,9 @@
 var db = require("../config/config");
-
+const logError = require("../helper/log_error");
 const getemployee = async (req, res) => {
   var sql = `
-SELECT * FROM employee
-WHERE EmpCode = 'Emp01'
+SELECT * FROM employeeaad
+WHEREs EmpCode = ''
   `;
 
   try {
@@ -13,6 +13,7 @@ WHERE EmpCode = 'Emp01'
     console.error(err);
     res.status(500).send({ error: "Failed to fetch employees" });
   }
+  await logError(res, err);
 };
 const createEmployee = async (req, res) => {
   const sql = `

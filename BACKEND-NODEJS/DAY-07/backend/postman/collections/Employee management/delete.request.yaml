@@ -6,7 +6,7 @@ body:
   type: json
   content: "{\r
 
-    \    \"empCode\" : \"Emp01\"\r
+    \    \"empCode\" : \"Emp02\"\r
 
     }   "
 order: 1307

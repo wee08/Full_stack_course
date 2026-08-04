@@ -1,0 +1,17 @@
+$kind: http-request
+url: http://localhost:3000/v1/api/product/update/P00
+method: PUT
+body:
+  type: json
+  content: "{\r
+
+    \    \"pro_id\":\"P01\",\r
+
+    \    \"pro_name\":\"Sport Spray\",\r
+
+    \    \"pro_price\":120.00,\r
+
+    \    \"import_date\":\"2026-03-22\"\r
+
+    }"
+order: 4874
