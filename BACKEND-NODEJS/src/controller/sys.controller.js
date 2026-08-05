@@ -1,6 +1,7 @@
 const db = require("../config/config");
 const { missing, checkEmpExistend } = require("../helper/validate");
 const dotenv = require("dotenv");
+const { sendMessageToTelegram } = require("../helper/telegramConfig");
 dotenv.config();
 
 const fetchAllEmployee = async () => {
@@ -141,4 +142,5 @@ module.exports = {
   createEmployee,
   updateEmployee,
   deleteEmployee,
+  sendMessageToTelegram,
 };
