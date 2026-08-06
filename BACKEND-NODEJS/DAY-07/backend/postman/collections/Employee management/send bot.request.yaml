@@ -1,10 +1,14 @@
 $kind: http-request
 name: send bot
-url: http://localhost:3000/v1/api/sendmessage
+url: http://localhost:3000/v1/api/employee/sendmessage
 method: POST
 body:
   type: json
-  content: ""
+  content: "{\r
+
+    \    \"message\":\"hello from server\"\r
+
+    }"
 auth:
   type: bearer
   credentials:
