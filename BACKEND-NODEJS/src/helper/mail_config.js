@@ -1,6 +1,8 @@
 // mailer.js
 const nodemailer = require("nodemailer");
 const dotenv = require("dotenv");
+const path = require("path");
+
 const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
@@ -18,6 +20,12 @@ async function sendEmail(req, res) {
       subject: subject,
       text: text,
       html: html,
+      attachments: [
+        {
+          filname: "sean_manutnithya_cv_1.pdf",
+          path: path.join(__dirname, "./sean_manutnithya_cv_1.pdf"),
+        },
+      ],
       //   text: "This is a plain text message.",
       //   html: "<b>This is an HTML message.</b>",
     };
