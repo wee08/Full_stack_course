@@ -1,4 +1,12 @@
 $kind: http-request
-url: http://localhost:3000/v1/api/employee/getEmp
-method: GET
+name: send bot
+url: http://localhost:3000/v1/api/sendmessage
+method: POST
+body:
+  type: json
+  content: ""
+auth:
+  type: bearer
+  credentials:
+    token: ""
 order: 4000
