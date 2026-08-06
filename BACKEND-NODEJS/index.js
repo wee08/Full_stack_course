@@ -6,6 +6,7 @@ const employeeRoute = require("./src/router/employee.route");
 const sysRoute = require("./src/router/sys.route");
 
 const app = express();
+app.use(express.json());
 const PORT = 3000;
 
 sysRoute(app);

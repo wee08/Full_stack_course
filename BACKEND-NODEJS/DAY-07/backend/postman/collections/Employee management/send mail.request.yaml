@@ -1,0 +1,22 @@
+$kind: http-request
+name: send mail
+url: http://localhost:3000/v1/api/employee/sendmessage/email
+method: POST
+body:
+  type: json
+  content: "{\r
+
+    \  \"to\": \"manutnithya08@gmail.com\",\r
+
+    \  \"subject\": \"Inquiry Regarding Collaboration Opportunity\",\r
+
+    \  \"text\": \"Dear Sir/Madam,\\n\\nI hope this message finds you well. My name is Nithya, and I am a Computer Science student at the Institute of Technology of Cambodia currently working on full-stack development projects.\\n\\nI am writing to inquire about potential opportunities for collaboration or internship within your organization. I have experience building REST APIs with Node.js and Express, as well as front-end interfaces using React, and I am eager to apply and further develop these skills in a professional setting.\\n\\nI would greatly appreciate the opportunity to discuss this further at your convenience. Please let me know if you require any additional information, such as my resume or portfolio.\\n\\nThank you for your time and consideration.\\n\\nBest regards,\\nNithya\",\r
+
+    \  \"html\": \"<p>Dear Sir/Madam,</p><p>I hope this message finds you well. My name is Nithya, and I am a Computer Science student at the Institute of Technology of Cambodia currently working on full-stack development projects.</p><p>I am writing to inquire about potential opportunities for collaboration or internship within your organization. I have experience building REST APIs with Node.js and Express, as well as front-end interfaces using React, and I am eager to apply and further develop these skills in a professional setting.</p><p>I would greatly appreciate the opportunity to discuss this further at your convenience. Please let me know if you require any additional information, such as my resume or portfolio.</p><p>Thank you for your time and consideration.</p><p>Best regards,<br>Nithya</p>\"\r
+
+    }"
+auth:
+  type: bearer
+  credentials:
+    token: ""
+order: 5000

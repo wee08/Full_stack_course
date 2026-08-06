@@ -3,6 +3,7 @@ const {
   createEmployee,
   updateEmployee,
   deleteEmployee,
+  sendMyEmail,
 } = require("../controller/sys.controller");
 const { sendMessageToTelegram } = require("../helper/telegramConfig");
 const { validate_token } = require("../middleware/auth");
@@ -14,6 +15,7 @@ const sysRoute = (app) => {
 
   // telegram send message
   app.post("/v1/api/employee/sendmessage", sendMessageToTelegram);
+  app.post("/v1/api/employee/sendmessage/email", sendMyEmail);
 };
 
 module.exports = sysRoute;

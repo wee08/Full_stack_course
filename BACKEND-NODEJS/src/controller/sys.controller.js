@@ -2,6 +2,7 @@ const db = require("../config/config");
 const { missing, checkEmpExistend } = require("../helper/validate");
 const dotenv = require("dotenv");
 const { sendMessageToTelegram } = require("../helper/telegramConfig");
+const { sendEmail } = require("../helper/mail_config");
 dotenv.config();
 
 const fetchAllEmployee = async () => {
@@ -137,10 +138,15 @@ const deleteEmployee = async (req, res) => {
   }
 };
 
+const sendMyEmail = async (req, res) => {
+  await sendEmail(req, res);
+};
+
 module.exports = {
   getAllEmployee,
   createEmployee,
   updateEmployee,
   deleteEmployee,
   sendMessageToTelegram,
+  sendMyEmail,
 };
