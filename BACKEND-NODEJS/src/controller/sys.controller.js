@@ -1,6 +1,7 @@
 const db = require("../config/config");
-const { missing, checkEmpExistend } = require("../helper/validate");
 const dotenv = require("dotenv");
+
+const { missing, checkEmpExistend } = require("../helper/validate");
 const { sendMessageToTelegram } = require("../helper/telegramConfig");
 const { sendEmail } = require("../helper/mail_config");
 dotenv.config();
