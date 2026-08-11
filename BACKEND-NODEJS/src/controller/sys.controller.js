@@ -143,6 +143,17 @@ const sendMyEmail = async (req, res) => {
   await sendEmail(req, res);
 };
 
+const otpStore = {};
+const sendOTP = async (req, res) => {
+  try {
+    const {email} = req.body;
+
+    const sql =  `SELECT TABLE `
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 module.exports = {
   getAllEmployee,
   createEmployee,
@@ -150,4 +161,5 @@ module.exports = {
   deleteEmployee,
   sendMessageToTelegram,
   sendMyEmail,
+  sendOTP,
 };
