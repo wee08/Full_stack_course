@@ -1,5 +1,0 @@
-$kind: http-request
-name: get all product
-url: http://localhost:3000/v1/api/product/getAll
-method: GET
-order: 1000

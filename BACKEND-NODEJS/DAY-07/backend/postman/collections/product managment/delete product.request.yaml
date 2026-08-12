@@ -1,8 +1,0 @@
-$kind: http-request
-name: delete product
-url: http://localhost:3000/v1/api/product/delete
-method: DELETE
-body:
-  type: json
-  content: "{\r\n    \"pro_id\":\"P01\"\r\n}"
-order: 5000

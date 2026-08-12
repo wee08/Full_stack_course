@@ -5,6 +5,7 @@ const {
   deleteEmployee,
   sendMyEmail,
   sendOTP,
+  getUser,
 } = require("../controller/sys.controller");
 const { sendMessageToTelegram } = require("../helper/telegramConfig");
 const { validate_token } = require("../middleware/auth");
@@ -21,6 +22,9 @@ const sysRoute = (app) => {
 
   // send otp to email
   app.post("/v1/api/user/send-otp", sendOTP);
+
+  // testing user route with sequelize
+  app.get("/api/v1/sequelize/getuser", getUser);
 };
 
 module.exports = sysRoute;

@@ -1,6 +1,7 @@
 const db = require("../config/config");
 const dotenv = require("dotenv");
 
+const Employee = require("../models/user");
 const { missing, checkEmpExistend } = require("../helper/validate");
 const { sendMessageToTelegram } = require("../helper/telegramConfig");
 const { sendEmail } = require("../helper/mail_config");
@@ -146,14 +147,22 @@ const sendMyEmail = async (req, res) => {
 const otpStore = {};
 const sendOTP = async (req, res) => {
   try {
-    const {email} = req.body;
+    const { email } = req.body;
 
-    const sql =  `SELECT TABLE `
+    const sql = `SELECT TABLE `;
   } catch (error) {
     console.error(error);
   }
 };
-
+const getUser = async (req, res) => {
+  try {
+    const users = await Employee.findAll();
+    res.status(200).json({ users });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Failed to fetch employees." });
+  }
+};
 module.exports = {
   getAllEmployee,
   createEmployee,
@@ -162,4 +171,5 @@ module.exports = {
   sendMessageToTelegram,
   sendMyEmail,
   sendOTP,
+  getUser,
 };
