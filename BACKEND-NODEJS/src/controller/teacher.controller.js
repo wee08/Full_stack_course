@@ -23,5 +23,43 @@ const getTeacher = async (req, res) => {
     res.send({ error: error.message });
   }
 };
+const createTeacher = async (req, res) => {
+  try {
+    const field = ({
+      first_name,
+      last_name,
+      gender,
+      date_of_birth,
+      email,
+      phone,
+      address,
+      hire_date,
+      specialization,
+      salary,
+      status,
+    } = req.body);
 
-module.exports = getTeacher;
+    const newTeacher = {
+      first_name,
+      last_name,
+      gender,
+      date_of_birth,
+      email,
+      phone,
+      address,
+      hire_date,
+      specialization,
+      salary,
+      status,
+    };
+    await missing(req, res, field);
+    const result = await Teacher.create(newTeacher);
+    res.status(201).json(result);
+  } catch (error) {
+    return res.send({
+      error,
+    });
+  }
+};
+
+module.exports = { getTeacher, createTeacher };
