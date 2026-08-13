@@ -1,10 +1,11 @@
 const express = require("express");
 
 const productRoute = require("./src/router/product.route");
-const teacherRoute = require("./src/router/teacher.route");
 const employeeRoute = require("./src/router/employee.route");
 const sysRoute = require("./src/router/sys.route");
+const teacherRoute = require("./src/router/teacher.route");
 const user = require("./src/models/user");
+const teacher = require("./src/models/teacher");
 const sequelize = require("./src/config/sequelizeConfig");
 const { addListener } = require("./src/config/config");
 const app = express();
@@ -12,7 +13,7 @@ app.use(express.json());
 const PORT = 3000;
 
 sysRoute(app);
-
+teacherRoute(app);
 sequelize
   .sync({ alter: true })
   .then(() => {
