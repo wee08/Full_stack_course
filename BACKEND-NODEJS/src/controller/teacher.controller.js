@@ -1,23 +1,26 @@
+const sequelize = require("../config/sequelizeConfig");
 const Teacher = require("../models/teacher");
-
+const { missing } = require("../helper/validate");
 const getTeacher = async (req, res) => {
   try {
     const { id } = req.params;
-
     if (!id) {
       const result = await Teacher.findAll();
-      return res.send({ result });
+      return res.send({
+        result,
+      });
     }
-
-    const result = await Teacher.findByPk(id);
-
-    if (!result) {
-      return res.status(404).send({ error: "Teacher not found" });
+    const teacher = await Teacher.findByPk(id);
+    if (!teacher) {
+      return res.status(404).send({
+        errro: "Teacher not found",
+      });
     }
-
-    return res.send({ teacher: result });
+    return res.send({
+      teacher,
+    });
   } catch (error) {
-    return res.status(500).send({ error: error.message });
+    res.send({ error: error.message });
   }
 };
 
