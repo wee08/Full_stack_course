@@ -96,5 +96,23 @@ const updateTeacher = async (req, res) => {
     });
   }
 };
-
-module.exports = { getTeacher, createTeacher, updateTeacher };
+const deleteTeacher = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const teacher = await Teacher.findByPk(id);
+    if (!teacher) {
+      return res.status(404).send({
+        error: "Teacher not found ",
+      });
+    }
+    const deletedTeacher = await teacher.destroy(id);
+    res.send({
+      message: deletedTeacher,
+    });
+  } catch (error) {
+    res.send({
+      error,
+    });
+  }
+};
+module.exports = { getTeacher, createTeacher, updateTeacher, deleteTeacher };
