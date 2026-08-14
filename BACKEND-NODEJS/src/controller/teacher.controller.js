@@ -61,5 +61,40 @@ const createTeacher = async (req, res) => {
     });
   }
 };
+const updateTeacher = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const teacher = await Teacher.findByPk(id);
+    if (!teacher) {
+      return res.status(404).send({
+        error: "Teacher not found",
+      });
+    }
+    const field = ({
+      first_name,
+      last_name,
+      gender,
+      date_of_birth,
+      email,
+      phone,
+      address,
+      hire_date,
+      specialization,
+      salary,
+      status,
+    } = req.body);
+    await missing(req, res, id);
+    await missing(req, res, field);
 
-module.exports = { getTeacher, createTeacher };
+    const udpatedTeacher = await teacher.update(field);
+    res.send({
+      udpatedTeacher,
+    });
+  } catch (error) {
+    return res.send({
+      error,
+    });
+  }
+};
+
+module.exports = { getTeacher, createTeacher, updateTeacher };
