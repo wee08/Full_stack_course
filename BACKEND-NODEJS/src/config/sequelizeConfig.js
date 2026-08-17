@@ -3,13 +3,13 @@ const path = require("path");
 const dotenv = require("dotenv");
 dotenv.config({ path: path.join(__dirname, "../../.env") });
 const sequelize = new Sequelize(
-  process.env.DB_NAME,
-  process.env.DB_USER,
-  process.env.DB_PASSWORD,
+  process.env.DB_NAME, // db name
+  process.env.DB_USER, // db user
+  process.env.DB_PASSWORD, // db password
   {
-    host: process.env.DB_HOST,
-    port: Number(process.env.DB_PORT || 3306),
-    dialect: "mysql",
+    host: process.env.DB_HOST, // host
+    port: Number(process.env.DB_PORT || 3306), // db port
+    dialect: "mysql", // db
     logging: false, // set to console.log to see raw SQL queries
     pool: {
       max: 5,
