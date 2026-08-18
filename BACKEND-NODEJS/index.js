@@ -8,12 +8,13 @@ const user = require("./src/models/user");
 const teacher = require("./src/models/teacher");
 const sequelize = require("./src/config/sequelizeConfig");
 const { addListener } = require("./src/config/config");
+const cardpaywayRoute = require("./src/router/cardpayway.route");
 const app = express();
 app.use(express.json());
 const PORT = 3000;
-
 sysRoute(app);
 teacherRoute(app);
+cardpaywayRoute(app);
 sequelize
   .sync({ alter: true })
   .then(() => {
