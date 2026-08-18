@@ -1,17 +1,14 @@
-const Stripe = require("stripe");
+const stripe = require("stripe");
 const dotenv = require("dotenv");
 dotenv.config();
 
 const appUrl = "http://localhost:3000";
-const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
+const stripeInstance = stripe(process.env.STRIPE_SECRET_KEY);
 
-// Controller: builds a Checkout Session and sends back the URL
 const createCheckoutSession = async (req, res) => {
   try {
-    const { price, quantity } = req.body;
-    const total = price * quantity; // computed, use it in unit_amount instead of the hardcoded 2000 below if you want dynamic pricing
-
-    const session = await stripe.checkout.sessions.create({
+    const { price } = req.body;
+    const Data = {
       mode: "payment",
       line_items: [
         {
@@ -21,14 +18,16 @@ const createCheckoutSession = async (req, res) => {
               name: "Visa PayWay Demo",
               description: "Testing payment by Stripe",
             },
-            unit_amount: 2000,
+            unit_amount: price,
           },
           quantity: 1,
         },
       ],
       success_url: `${appUrl}/api/v1/cardpayway/Success?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${appUrl}/cancel`,
-    });
+    };
+
+    const session = await stripeInstance.checkout.sessions.create(Data);
 
     res.json({
       message: "checkout session created successfully",
@@ -42,11 +41,8 @@ const createCheckoutSession = async (req, res) => {
     });
   }
 };
-
-// Fetches session details from Stripe by id — NOT an Express handler,
-// takes a plain sessionId string and returns a plain object
 const getSessionDetails = async (sessionId) => {
-  const session = await stripe.checkout.sessions.retrieve(sessionId, {
+  const session = await stripeInstance.checkout.sessions.retrieve(sessionId, {
     expand: ["payment_intent.payment_method"],
   });
   return {
@@ -59,9 +55,7 @@ const getSessionDetails = async (sessionId) => {
     last4: session.payment_intent?.payment_method?.card?.last4 || null,
   };
 };
-
-// Controller: reads ?session_id= from the redirect and returns payment details
-const PaymentSuccess = async (request, response) => {
+const paymentSuccess = async (request, response) => {
   const sessionId = request.query.session_id;
   if (!sessionId) {
     return response.status(400).json({ error: "Missing session_id." });
@@ -75,4 +69,4 @@ const PaymentSuccess = async (request, response) => {
   }
 };
 
-module.exports = { createCheckoutSession, PaymentSuccess };
+module.exports = { createCheckoutSession, paymentSuccess };

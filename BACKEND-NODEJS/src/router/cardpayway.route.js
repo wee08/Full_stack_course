@@ -1,9 +1,9 @@
 const {
   createCheckoutSession,
-  PaymentSuccess,
+  paymentSuccess,
 } = require("../controller/cardpayway.controller");
 const cardpaywayRoute = (app) => {
   app.post("/api/v1/cardpayway/createCheckoutSession", createCheckoutSession);
-  app.post("/api/v1/cardpayway/success", PaymentSuccess);
+  app.get("/api/v1/cardpayway/success", paymentSuccess);
 };
 module.exports = cardpaywayRoute;

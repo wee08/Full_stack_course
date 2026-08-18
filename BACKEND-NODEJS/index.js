@@ -1,5 +1,5 @@
 const express = require("express");
-
+const cors = require("cors");
 const productRoute = require("./src/router/product.route");
 const employeeRoute = require("./src/router/employee.route");
 const sysRoute = require("./src/router/sys.route");
@@ -11,6 +11,7 @@ const { addListener } = require("./src/config/config");
 const cardpaywayRoute = require("./src/router/cardpayway.route");
 const app = express();
 app.use(express.json());
+app.use(cors());
 const PORT = 3000;
 sysRoute(app);
 teacherRoute(app);
