@@ -1,76 +1,37 @@
-const stripe = require("stripe");
-require("dotenv").config();
+const {
+  BakongKHQR,
+  khqrData,
+  IndividualInfo,
+  MerchantInfo,
+  SourceInfo,
+} = require("bakong-khqr");
 
-const stripeInstance = stripe(process.env.STRIPE_SECRET_KEY);
-const appUrl = "http://localhost:3000";
+const dotenv = require("dotenv");
+dotenv.config();
 
-const createCheckoutSession = async (request, response) => {
-  try {
-    var Data = {
-      mode: "payment",
-      payment_method_types: ["card"],
-      line_items: [
-        {
-          price_data: {
-            currency: "usd",
-            product_data: {
-              name: "Visa PayWay Demo Payment",
-              description: "Test card payment processed securely by Stripe",
-            },
-            unit_amount: 2000, // Amount in cents (e.g., $10.00)
-          },
-          quantity: 1,
-        },
-      ],
-      success_url: `${appUrl}/api/v1/cardpayway/Success?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${appUrl}/cancel`,
-    };
-
-    const session = await stripeInstance.checkout.sessions.create(Data);
-
-    response.json({
-      message: "Checkout session created successfully!",
-      url: session.url,
-    });
-  } catch (error) {
-    console.error(error);
-    response.status(500).json({
-      error:
-        "Unable to create checkout session. Check your Stripe keys and server logs.",
-    });
-  }
+const optionalData = {
+  currency: khqrData.currency.khr,
+  amount: 100,
+  expirationTimestamp: Date.now() + 60 * 10000, // always need to be able to generate qrcode
+  mobileNumber: process.env.MERCHANT_PHONE,
+  languagePreference: "km",
+  merchantNameAlternateLanguage: process.env.MERCHANT_NAME,
+  merchantCity: process.env.MERCHANT_CITY,
 };
+const individualInfo = new IndividualInfo(
+  process.env.BAKONG_ACCOUNT_ID,
+  process.env.MERCHANT_NAME,
+  process.env.MERCHANT_CITY,
+  optionalData,
+);
+const KHQR = new BakongKHQR();
+const individual = KHQR.generateIndividual(individualInfo);
+console.log("qr: " + individual.data.qr);
+// const SECRETE_INFO = {
+//   BAKONG_ACCOUNT_ID: process.env.BAKONG_ACCOUNT_ID,
+//   MERCHANT_ID: process.env.MERCHANT_ID,
+//   MERCHANT_NAME: process.env.MERCHANT_NAME,
+//   MERCHANT_CITY: process.env.MERCHANT_NAME,
+// };
 
-const getSessionDetails = async (sessionId) => {
-  const session = await stripeInstance.checkout.sessions.retrieve(sessionId, {
-    expand: ["payment_intent.payment_method"],
-  });
-
-  return {
-    id: session.id,
-    amount_total: session.amount_total,
-    currency: session.currency,
-    payment_status: session.payment_status,
-    customer_email: session.customer_details?.email || null,
-    card_brand: session.payment_intent?.payment_method?.card?.brand || null,
-    last4: session.payment_intent?.payment_method?.card?.last4 || null,
-  };
-};
-
-// Stripe redirects here after payment. Confirms the real status with
-// Stripe and responds with the session data.
-const PaymentSuccess = async (request, response) => {
-  const sessionId = request.query.session_id;
-  if (!sessionId) {
-    return response.status(400).json({ error: "Missing session_id." });
-  }
-  try {
-    const data = await getSessionDetails(sessionId);
-    response.json(data);
-  } catch (error) {
-    console.error(error);
-    response.status(404).json({ error: "Checkout session not found." });
-  }
-};
-
-module.exports = { createCheckoutSession, PaymentSuccess };
+// const generateKHQR = async (req, res) => {};

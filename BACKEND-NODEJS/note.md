@@ -65,3 +65,9 @@ node -e "console.log(require('crypto').randomBytes(64).toString('hex'))"
 .gitignore - not push to github
 
 - stripe : online payment platform
+
+bakong account id
+merchant name
+merchant city
+merchant phone
+store label

@@ -1,3 +1,9 @@
+const {
+  BakongKHQR,
+  khqrData,
+  IndividualInfo,
+  SourceInfo,
+} = require("bakong-khqr");
 const stripe = require("stripe");
 const dotenv = require("dotenv");
 dotenv.config();
@@ -69,4 +75,62 @@ const paymentSuccess = async (request, response) => {
   }
 };
 
-module.exports = { createCheckoutSession, paymentSuccess };
+// handle create qr payment
+
+const generateKHQR = async (req, res) => {
+  const { amount, currency, billNumber } = req.body;
+  if (!amount || amount <= 0) {
+    return res.status(400).json({
+      sucess: false,
+      message: "Amount is required and must be greater than 0",
+    });
+  }
+  const BAKONG_ACCOUNT_ID = process.env.BAKONG_ACCOUNT_ID;
+  const ACCOUNT_NAME = process.env.MERCHANT_NAME;
+  const MERCHANT_CITY = process.env.MERCHANT_CITY;
+
+  const qrCurrency =
+    currency === "KHR" ? khqrData.currency.khr : khqrData.currency.usd;
+
+  const optionalData = {
+    currency: qrCurrency,
+    amount: parseFloat(amount),
+    billNumber: billNumber,
+    mobileNumber: process.env.MERCHANT_PHONE,
+    storeLabel: process.env.STORE_LABEL,
+    terminalLabel: "POS-T1",
+    expirationTimestamp: Date.now() + 5 * 60 * 1000,
+  };
+
+  const individualInfo = new IndividualInfo(
+    BAKONG_ACCOUNT_ID,
+    ACCOUNT_NAME,
+    MERCHANT_CITY,
+    optionalData,
+  );
+  const khqr = new BakongKHQR();
+  const response = khqr.generateIndividual(individualInfo);
+
+  if (response && response.data) {
+    // response.data.qr contains the EMV-compliant KHQR string
+    // This string can be encoded into a QR code image for customers to scan
+    // with any Bakong-supported banking app (ABA, Wing, ACLEDA, etc.)
+    return res.status(200).json({
+      success: true,
+      data: {
+        qr: response.data.qr, // The KHQR string to encode as QR image
+        md5: response.data.md5, // MD5 hash for verification
+        merchantName: ACCOUNT_NAME,
+        currency: currency || "USD",
+        amount: parseFloat(amount),
+      },
+      message: "KHQR generated successfully",
+    });
+  }
+
+  return res.status(500).json({
+    success: false,
+    message: "Failed to generate KHQR",
+  });
+};
+module.exports = { createCheckoutSession, paymentSuccess, generateKHQR };
